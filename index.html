@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical Physics Simulator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<style>
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #f5f6fa;
+    --control-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--control-bg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.simulator {
+    background-color: var(--control-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+canvas {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    display: block;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.controls {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+label {
+    min-width: 120px;
+    color: var(--primary-color);
+}
+
+input[type="range"] {
+    flex: 1;
+    max-width: 300px;
+}
+
+.info-panel {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--control-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.info-panel h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .tabs {
+        flex-wrap: wrap;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    label {
+        min-width: auto;
+    }
+}
+
+</style>
+    <div class="container">
+        <header>
+            <h1>Optical lens and mirror</h1>
+            <div class="tabs">
+                <button class="tab-btn active" data-type="convex-lens">Convex Lens</button>
+                <button class="tab-btn" data-type="concave-lens">Concave Lens</button>
+                <button class="tab-btn" data-type="convex-mirror">Convex Mirror</button>
+                <button class="tab-btn" data-type="concave-mirror">Concave Mirror</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="simulator">
+                <canvas id="opticsCanvas" width="800" height="400"></canvas>
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="focalLength">Focal Length:</label>
+                        <input type="range" id="focalLength" min="50" max="200" value="100">
+                        <span id="focalValue">100</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="objectDistance">Object Distance:</label>
+                        <input type="range" id="objectDistance" min="50" max="300" value="150">
+                        <span id="distanceValue">150</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="objectHeight">Object Height:</label>
+                        <input type="range" id="objectHeight" min="20" max="100" value="50">
+                        <span id="heightValue">50</span>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="js/all.js"></script>
+</body>
+</html>
